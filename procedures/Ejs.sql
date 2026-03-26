@@ -54,5 +54,41 @@ SELECT @mensaje;
 
 DROP PROCEDURE IF EXISTS borrarLineaProducto;
 
+# EJ8 NO TERMINADO
+
+DELIMITER //
+CREATE PROCEDURE modifyComment(IN id INT, IN comment TEXT,OUT resultado INT)
+BEGIN
+	UPDATE o.comments FROM orders o
+	SET(o.comments = comment)
+	WHERE o.orderNumber = id
+	
+END //
+DELIMITER ;
 
 
+# EJ 9
+DELIMITER //
+
+CREATE PROCEDURE nombreSP()
+BEGIN
+    DECLARE variable1 INT;
+    DECLARE hayFilas BOOLEAN DEFAULT TRUE;
+    DECLARE nombreCursor CURSOR FOR 
+        SELECT city FROM offices;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND 
+        SET hayFilas = FALSE;
+    OPEN nombreCursor;
+    bucle: LOOP
+        FETCH nombreCursor INTO variable1;
+        IF NOT hayFilas THEN
+            LEAVE bucle;
+        END IF;
+
+		set listadoOficinas = concat(ciudad, “, “, listadoOficinas)
+		
+    END LOOP bucle;
+    CLOSE nombreCursor;
+END //
+
+DELIMITER ;
