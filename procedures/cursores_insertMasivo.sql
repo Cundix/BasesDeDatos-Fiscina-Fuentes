@@ -265,3 +265,5 @@ CREATE TABLE try_insert_masivo (
     comments TEXT,
     customerNumber INT NOT NULL
 );
+
+CREATE TABLE something LIKE customers;
